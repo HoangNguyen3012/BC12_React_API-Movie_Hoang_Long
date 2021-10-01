@@ -1,0 +1,13 @@
+@import '../../../../assets/SCSS/variables';
+@import '../../../../assets/SCSS/mixin';
+
+.movieItem {
+    padding: $card-padding;
+    border: none;
+    .card {
+        .card-img-top {
+            aspect-ratio: $card-img-top-aspect-ratio;
+            border: none;
+        };
+    };
+};

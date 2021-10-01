@@ -1,0 +1,35 @@
+//break points
+$breakpoints: (
+    "extra-large": 1200px,
+    "large": 992px,
+    "medium": 768px,
+    "small": 576px,
+);
+
+//$enable-responsive-font-sizes: true;
+
+// Primary color code
+$color-primary: #ecfffd; // for background of unconcentrated components
+$color-primary-light: #ffffff; // for background of concentrated items
+$color-primary-dark: #b9ccc8; // for border or components without text
+
+// Secondary color code
+$color-secondary: #3d618e; // for concentrated items or background of light text
+$color-secondary-light: #6d8ebe; // for background of small items or small items without text
+$color-secondary-dark: #013760; // for background of secondary light items or texts
+
+// Color pallette
+$color-1: #776182;
+$color-2: #ecfffd; // color primary
+$color-3: #92e8f7;
+$color-4: #67bee5;
+$color-5: #2e95ce;
+
+$navbar-dropdown-item-fontsize: 0.9rem;
+
+$navbar-dropdown-width: 80px;
+
+$navbar-dropdown-box-shadow-1: 0 1px 4px 0 rgba(23, 163, 184, 0.5);
+
+$card-img-top-aspect-ratio: 3/4;
+$card-padding: 15px 15px;

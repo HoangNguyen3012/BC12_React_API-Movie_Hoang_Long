@@ -1,0 +1,30 @@
+.trigger {
+    padding: 0 24px;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+    align-self: flex-start;
+}
+  
+.trigger:hover {
+    color: #1890ff;
+}
+  
+.logo{
+    height: 32px;
+    margin: 16px;
+}
+  
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+$trigger-width: 48px;
+.ant-layout-sider-zero-width-trigger {
+    top: 0px!important;
+    font-size: 32px!important;
+    height: 64px!important;
+    width: $trigger-width!important;
+    right: -$trigger-width!important;
+}

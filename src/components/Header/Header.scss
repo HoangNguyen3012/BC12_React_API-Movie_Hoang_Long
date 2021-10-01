@@ -1,0 +1,19 @@
+@import '../../assets/SCSS/variables';
+@import '../../assets/SCSS/mixin';
+
+
+.navbar {
+    background-color: $color-primary;
+    #collapsibleNavId .dropdown {
+        width: $navbar-dropdown-width;
+        @include responsive('small'){
+            width: 100%;
+        }
+        .dropdown-menu {
+            box-shadow: $navbar-dropdown-box-shadow-1;
+            .dropdown-item {
+                font-size: $navbar-dropdown-item-fontsize;
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+}
+
+:root {
+  --fs-h1: clamp(36px, 4.5vw , 64px);
+  --fs-h2: clamp(27px, 3vw, 42px);
+  --fs-h3: clamp(26px, 2.5vw, 36px);
+  --fs-h4: clamp(20px, 2vw, 26px);
+  --fs-h5: clamp(18px, 2.5vw, 22px);
+  --fs-h6: clamp(16px, 1.5vw, 20px);
+  --fs-norm: clamp(1em, 1.05vw, 1.3em); /** content and normal texts */
+}
+
+.App .responsive-h1 {
+  font-size: var(--fs-h1);
+  margin-bottom: 20px;
+}
+
+.App .responsive-h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: 15px;
+}
+
+.App .responsive-h3 {
+  font-size: var(--fs-h3);
+  margin-bottom: 14px;
+}
+
+.App .responsive-h4 {
+  font-size: var(--fs-h4);
+  margin-bottom: 12px;
+}
+
+.App .responsive-h5 {
+  font-size: var(--fs-h5);
+  margin-bottom: 10px;
+}
+
+.App .responsive-h6 {
+  font-size: var(--fs-h6);
+  margin-bottom: 8px;
+}
+
+.App .responsive-text {
+  font-size: var(--fs-norm);
+}

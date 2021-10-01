@@ -1,0 +1,19 @@
+@import '../../../assets/SCSS/variables';
+@import '../../../assets/SCSS/mixin';
+
+// .clientDetail {
+//     background-color: $color-secondary-light;
+// }
+
+#tabClient {
+    a:focus {
+        box-shadow: none;
+    }
+}
+
+#tabClientContent {
+    border: 1px solid black;
+    min-height: 150px;
+    box-shadow: $navbar-dropdown-box-shadow-1;
+    background-color: $color-primary-light;
+}

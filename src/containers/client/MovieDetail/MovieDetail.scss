@@ -1,0 +1,55 @@
+@import '../../../assets/SCSS/variables';
+@import '../../../assets/SCSS/mixin';
+
+.movieDetail {
+    img {
+        box-shadow: 2px 0px 5px 5px rgba(1,55,96,0.2);
+    }
+}
+
+.showTime {
+    background-color: $color-primary-dark;
+    h1 {
+        color: $color-secondary-dark;
+    }
+    .content__left {
+        .left-logo {
+            img {
+                margin-right: 6px;
+                width: 50px;
+            }
+        }
+        .nav-link {
+            color: $color-secondary-dark;
+        }
+        .active.nav-link {
+            background-color: $color-1;
+        }
+        .cinemaName {
+            text-transform: 'uppercase';
+            display: inline;
+        }
+
+        @include responsive('large') {
+            .left-logo {
+                width: fit-content;
+                img {
+                    margin-right: 0px;
+                }
+                .cinemaName {
+                    display: none;
+                }
+            }
+        }
+    }
+    .content__right {
+        background-color: $color-primary;
+        box-shadow: 2px 0px 5px 5px rgba(1,55,96,0.2);
+        .cinema__name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $color-1;
+            line-height: 3;
+        }
+    }
+}

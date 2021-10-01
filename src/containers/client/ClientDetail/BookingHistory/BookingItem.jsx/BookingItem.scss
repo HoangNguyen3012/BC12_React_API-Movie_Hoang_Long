@@ -1,0 +1,17 @@
+@import '../../../../../assets/SCSS/variables';
+@import '../../../../../assets/SCSS/mixin';
+
+.media {
+    background-color: $color-primary;
+    border: 1px solid $color-secondary-dark;
+    .media-body {
+        .header {
+            font-weight: 700;
+        }
+        .text-highlight {
+            font-weight: 600;
+            color: $color-secondary;
+        }
+
+    }
+}
