@@ -1,3 +1,6 @@
+@import '../../assets/SCSS/variables';
+@import '../../assets/SCSS/mixin';
+
 .trigger {
     padding: 0 24px;
     font-size: 18px;
@@ -16,8 +19,13 @@
     margin: 16px;
 }
   
-.site-layout .site-layout-background {
-    background: #fff;
+.site-layout {
+    .site-layout-sub-header-background {
+        padding: 0
+    }
+    .site-layout-background {
+        background: #fff;
+    }
 }
 
 $trigger-width: 48px;
@@ -27,4 +35,61 @@ $trigger-width: 48px;
     height: 64px!important;
     width: $trigger-width!important;
     right: -$trigger-width!important;
+}
+
+////// Drop down //////
+.dropdown {
+    position: relative;
+    text-align: right;
+    .trigger__dropdown {
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        span {
+            padding-left: 2px;
+            color: white;
+        }
+    }
+
+    @include responsive('medium') {
+        text-align: right;
+        .trigger__dropdown {
+            span {
+                display: none;
+            }
+        }
+
+    }
+
+
+    .dropdown__menu {
+        position: absolute;
+        width: 100%;
+        max-width: 220px;
+        text-align: center;
+        left: 15px;
+        top: calc(100% + .25rem);
+        z-index: 100;
+        background-color: #fff;
+        border-radius: .25rem;
+        box-shadow: 0 2px 5px 0 rebeccapurple;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+        pointer-events: none;
+        .dropdown__item {
+            width: 100%;
+            height: 100%;
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.3);
+            }
+        }
+    }
+}
+
+.dropdown.active > .dropdown__menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    cursor: pointer;
 }

@@ -3,7 +3,7 @@
 
 .movieDetail {
     img {
-        box-shadow: 2px 0px 5px 5px rgba(1,55,96,0.2);
+        box-shadow: $movieDetail-box-shadow;
     }
 }
 
@@ -44,7 +44,7 @@
     }
     .content__right {
         background-color: $color-primary;
-        box-shadow: 2px 0px 5px 5px rgba(1,55,96,0.2);
+        box-shadow: $movieDetail-box-shadow;
         .cinema__name {
             font-size: 1.1rem;
             font-weight: 600;

@@ -61,7 +61,7 @@ export default function Login(props) {
                         <Button type="primary" htmlType="submit" className="login-form-button">
                             Log in
                         </Button>
-                        Or <Link to="/signup">register now!</Link>
+                        {' '}Or <Link to="/signup">register now!</Link>
                     </Form.Item>
                 </Form>
             </div>

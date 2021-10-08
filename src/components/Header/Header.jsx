@@ -40,9 +40,10 @@ function Header(props) {
                         </li>
                         {currentUser ? (
                             <li className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle text-truncate" data-toggle="dropdown" role="button">{currentUser.taiKhoan}</a>
+                                <a href="/" className="nav-link dropdown-toggle text-truncate" data-toggle="dropdown" role="button">{currentUser.taiKhoan}</a>
                                 <div className="dropdown-menu dropdown-menu-sm-right text-center">
                                     <Link className="dropdown-item" to="/client">Client Info</Link>
+                                    {currentUser.maLoaiNguoiDung === 'QuanTri' ? <Link className="dropdown-item" to="/admin">To Admin Page</Link> : null}
                                     <a className="dropdown-item" href="/" onClick={handleLogout}
                                     >Logout</a>
                                 </div>

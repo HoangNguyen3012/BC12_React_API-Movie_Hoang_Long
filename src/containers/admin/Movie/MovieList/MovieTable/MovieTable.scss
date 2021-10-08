@@ -1,0 +1,46 @@
+@import '../../../../../assets/SCSS/variables';
+@import '../../../../../assets/SCSS/mixin';
+
+.adminMovieTable {
+    width: 100%;
+    background-color: $color-primary;
+    margin: 20px 0;
+    /* responsive column styles */
+    .table__header {
+        height: 80px;
+        background-color: $color-1;
+        color: $color-2;
+        .col__index {
+            min-width: 60px;
+            width: 10%;
+        }
+        .col__poster {
+            min-width: 80px;
+            width: 20%;
+        }
+        .col__movie {
+            min-width: 100px;
+            width: 30%;
+        }
+        .col__premier {
+            width: 20%;
+        }
+        .col__action {
+            min-width: 75px;
+            width: 10%;
+        }
+    }
+    @include responsive('small') {
+        .col__rating, .col__premier {
+            display: none;
+        }
+    }
+    /* responsive column styles end*/
+
+    /* styling rows */
+    .bg__odd {
+        background-color: $color-4;
+        color: $color-2;
+    }
+    /* styling rows end */
+}

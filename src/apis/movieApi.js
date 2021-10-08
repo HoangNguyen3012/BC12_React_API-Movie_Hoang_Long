@@ -9,6 +9,15 @@ const movieApi = {
     },
     fetchMovieDetailApi(movieId) {
         return callApi(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`);
+    },
+    deleteMovieApi(movieId, token) {
+        return callApi(`QuanLyPhim/XoaPhim?MaPhim=${movieId}`, 'DELETE', movieId, token);
+    },
+    editMovieUploadPictureApi(movieFormData, token) {
+        return callApi('QuanLyPhim/CapNhatPhimUpload', 'POST', movieFormData, token);
+    },
+    addMovieUploadPictureApi(movieFormData) {
+        return callApi('QuanLyPhim/ThemPhimUploadHinh', 'POST', movieFormData)
     }
 }
 
