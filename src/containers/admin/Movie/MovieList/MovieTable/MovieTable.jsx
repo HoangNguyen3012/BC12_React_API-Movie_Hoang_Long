@@ -3,7 +3,7 @@ import movieApi from 'apis/movieApi';
 import { useSelector } from 'react-redux';
 import './MovieTable.scss';
 import { Button, Modal } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, CalendarOutlined, DeleteOutlined } from '@ant-design/icons';
 
 export default function MovieTable(props) {
     const { listMovie } = props;
@@ -15,7 +15,7 @@ export default function MovieTable(props) {
     });
     let [modalLink, setModalLink] = useState({
         modalIsVisible: false,
-        modalAction: null,
+        modalAction: [null, null],
         maPhim: null,
     });
     const pageNums = [];
@@ -89,9 +89,11 @@ export default function MovieTable(props) {
                             <td className="col__rating">{movie.danhGia ? movie.danhGia : null}</td>
                             <td className="col__premier">{new Date(movie.ngayKhoiChieu ? movie.ngayKhoiChieu : null).toLocaleDateString()}</td>
                             <td className="col__action">
-                                <Button icon={<EditOutlined />} onClick={() => openModal(movie.maPhim, 'edit')}></Button>
+                                <Button icon={<EditOutlined />} onClick={() => openModal(movie.maPhim, ['edit', 'movie'])}></Button>
                                 {' '}
-                                <Button icon={<DeleteOutlined />} onClick={() => openModal(movie.maPhim, 'delete')}></Button>
+                                <Button icon={<CalendarOutlined />} onClick={() => openModal(movie.maPhim, ['edit', 'showTime'])}></Button>
+                                {' '}
+                                <Button icon={<DeleteOutlined />} onClick={() => openModal(movie.maPhim, ['delete', null])}></Button>
                             </td>
                         </tr>
                     ))}
@@ -131,12 +133,14 @@ export default function MovieTable(props) {
             <Modal
                 visible={modalLink.modalIsVisible}
                 footer={null}
-                title={modalLink.modalAction === 'edit' ? "Go to edit page" : "Confirm delete"}
+                title={modalLink.modalAction[0] === 'edit' ? "Go to edit page" : "Confirm delete"}
                 closable={false}
                 width={240}>
-                {modalLink.modalAction === 'edit' && <Button type="primary" href={`/admin/editMovie${modalLink.maPhim}`}>Go</Button>}
+                {modalLink.modalAction[1] === 'movie' && <Button type="primary" href={`/admin/editMovie${modalLink.maPhim}`}>Go</Button>}
                 {' '}
-                {modalLink.modalAction === 'delete' && <Button danger={true} onClick={() => deleteMovie(modalLink.maPhim)}>Delete</Button>}
+                {modalLink.modalAction[1] === 'showTime' && <Button type="primary" href={`/admin/showTime${modalLink.maPhim}`}>Go</Button>}
+                {' '}
+                {modalLink.modalAction[0] === 'delete' && <Button danger={true} onClick={() => deleteMovie(modalLink.maPhim)}>Delete</Button>}
                 {' '}
                 <Button onClick={() => setModalLink({ ...modalLink, modalIsVisible: false })}>Cancel</Button>
             </Modal>

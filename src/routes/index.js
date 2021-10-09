@@ -13,6 +13,7 @@ import Movie from "containers/admin/Movie/MovieList/Movie";
 import AddUser from "containers/admin/User/AddUser/AddUser";
 import UserList from "containers/admin/User/UserList/UserList";
 import AddMovie from "containers/admin/Movie/AddMovie/AddMovie";
+import ShowTime from "containers/admin/ShowTime/ShowTime";
 
 export const clientRoutes = [
     {
@@ -93,6 +94,12 @@ export const adminRoutes = [
     {
         path: '/admin/addMovie',
         component: AddMovie,
+        exact: false,
+        isPrivate: true,
+    },
+    {
+        path: '/admin/showTime:movieId',
+        component: ShowTime,
         exact: false,
         isPrivate: true,
     },
