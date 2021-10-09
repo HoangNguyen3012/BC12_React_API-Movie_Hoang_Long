@@ -8,6 +8,7 @@
         width: $navbar-dropdown-width;
         @include responsive('small'){
             width: 100%;
+            text-align: center;
         }
         .dropdown-menu {
             box-shadow: $navbar-dropdown-box-shadow-1;
