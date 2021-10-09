@@ -16,7 +16,7 @@ export default function MovieTable(props) {
     let [modalLink, setModalLink] = useState({
         modalIsVisible: false,
         modalAction: [null, null],
-        maPhim: null,
+        movie: {},
     });
     const pageNums = [];
     const itemDisplay = 6;
@@ -25,28 +25,29 @@ export default function MovieTable(props) {
     }
     // get total number of buttons for movieList display ends
 
-    const openModal = (maPhim, action) => {
+    const openModal = (movie, action) => {
         setModalLink({
             ...modalLink,
             modalIsVisible: true,
             modalAction: action,
-            maPhim: maPhim,
+            movie: {...movie},
         });
     };
 
-    const deleteMovie = (maPhim) => {
-        movieApi.deleteMovieApi(maPhim, currentUser.accessToken)
+    const deleteMovie = (movie) => {
+        console.log(movie)
+        movieApi.deleteMovieApi(movie.maPhim, currentUser.accessToken)
             .then(response => {
                 setModalLink({
                     ...modalLink,
                     modalIsVisible: false,
-                    maPhim: null,
+                    movie: {},
                 });
                 Modal.success({
                     title: 'Deleted successfully!',
                     content: (
                         <div>
-                            <p>Movie code {maPhim} has been removed</p>
+                            <p>Movie code {movie.tenPhim} has been removed</p>
                             <p>Refresh to take effect</p>
                         </div>
                     ),
@@ -58,7 +59,7 @@ export default function MovieTable(props) {
                     title: 'Error!',
                     content: (
                         <div>
-                            <p>There was an error removing movie code {maPhim}</p>
+                            <p>There was an error removing movie {movie.tenPhim}</p>
                         </div>
                     ),
                 });
@@ -89,11 +90,11 @@ export default function MovieTable(props) {
                             <td className="col__rating">{movie.danhGia ? movie.danhGia : null}</td>
                             <td className="col__premier">{new Date(movie.ngayKhoiChieu ? movie.ngayKhoiChieu : null).toLocaleDateString()}</td>
                             <td className="col__action">
-                                <Button icon={<EditOutlined />} onClick={() => openModal(movie.maPhim, ['edit', 'movie'])}></Button>
+                                <Button icon={<EditOutlined />} onClick={() => openModal(movie, ['edit', 'movie'])}></Button>
                                 {' '}
-                                <Button icon={<CalendarOutlined />} onClick={() => openModal(movie.maPhim, ['edit', 'showTime'])}></Button>
+                                <Button icon={<CalendarOutlined />} onClick={() => openModal(movie, ['edit', 'showTime'])}></Button>
                                 {' '}
-                                <Button icon={<DeleteOutlined />} onClick={() => openModal(movie.maPhim, ['delete', null])}></Button>
+                                <Button icon={<DeleteOutlined />} onClick={() => openModal(movie, ['delete', null])}></Button>
                             </td>
                         </tr>
                     ))}
@@ -136,11 +137,11 @@ export default function MovieTable(props) {
                 title={modalLink.modalAction[0] === 'edit' ? "Go to edit page" : "Confirm delete"}
                 closable={false}
                 width={240}>
-                {modalLink.modalAction[1] === 'movie' && <Button type="primary" href={`/admin/editMovie${modalLink.maPhim}`}>Go</Button>}
+                {modalLink.modalAction[1] === 'movie' && <Button type="primary" href={`/admin/editMovie${modalLink.movie.maPhim}`} onClick={() => localStorage.setItem('movieDetail', JSON.stringify(modalLink.movie))}>Go</Button>}
                 {' '}
-                {modalLink.modalAction[1] === 'showTime' && <Button type="primary" href={`/admin/showTime${modalLink.maPhim}`}>Go</Button>}
+                {modalLink.modalAction[1] === 'showTime' && <Button type="primary" href={`/admin/showTime${modalLink.movie.maPhim}`} onClick={() => localStorage.setItem('movieDetail', JSON.stringify(modalLink.movie))}>Go</Button>}
                 {' '}
-                {modalLink.modalAction[0] === 'delete' && <Button danger={true} onClick={() => deleteMovie(modalLink.maPhim)}>Delete</Button>}
+                {modalLink.modalAction[0] === 'delete' && <Button danger={true} onClick={() => deleteMovie(modalLink.movie)}>Delete</Button>}
                 {' '}
                 <Button onClick={() => setModalLink({ ...modalLink, modalIsVisible: false })}>Cancel</Button>
             </Modal>

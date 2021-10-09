@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
+    Col,
+    Row,
     Form,
     Modal,
     Button,
@@ -10,6 +12,7 @@ import {
     InputNumber,
 } from 'antd';
 import Loader from 'components/Loader/Loader';
+import { useHistory } from 'react-router';
 import cinemaApi from 'apis/cinemaApi';
 import showTimeApi from 'apis/showTimeApi';
 import moment from 'moment';
@@ -19,7 +22,13 @@ export default function ShowTime(props) {
         listCinemaSystem: [],
         listCinema: [],
         loading: true,
-    })
+    });
+
+    const history = useHistory();
+
+    const movieDetailLocal = JSON.parse(localStorage.getItem('movieDetail'));
+    console.log(movieDetailLocal);
+    const { maPhim, tenPhim, hinhAnh } = movieDetailLocal;
     
     useEffect( async () => {
         try {
@@ -30,7 +39,6 @@ export default function ShowTime(props) {
                 listCinemaSystem: result.data,
                 loading: false,
             });
-            console.log(result.data)
         }
         catch(error) {
             console.log(error);
@@ -48,7 +56,9 @@ export default function ShowTime(props) {
             console.log(result.data);
             Modal.success({
                 title: result.data,
-            })
+            });
+            localStorage.removeItem('movieDetail');
+            history.push('/admin/movie');
         }
         catch(error) {
             console.log(error);
@@ -85,25 +95,28 @@ export default function ShowTime(props) {
 
     return state.loading ? (<Loader/>) : (
         <>
-        <h3>Add a Show Time</h3>
+        <h3>Movie {tenPhim}</h3>
+        <h4>Add a Show Time</h4>
         <Form
             labelCol={{
                 span: 6,
             }}
             wrapperCol={{
-                span: 14,
+                span: 17,
             }}
             layout="horizontal"
             onFinish={onFinish}
             form={form}
             initialValues={{
-                maPhim: props.match.params.movieId*1,
+                maPhim: maPhim,
                 ngayChieuGioChieu: null,
                 maRap: null,
                 giaVe: 75000,
             }}
             style={{ textAlign: 'left' }}
         >
+                    <Row>
+            <Col xl={20} md={18} xs={24}>
             <Form.Item label="Cinema System">
                 <Select options={
                         state.listCinemaSystem?.map((cinemaSystem, idx) => (
@@ -143,11 +156,18 @@ export default function ShowTime(props) {
             <Form.Item label="Ticket Price (VND)" name="giaVe">
                 <InputNumber min={75000} max={150000}/>
             </Form.Item>
-            
+            </Col>
+            <Col lg={4} md={4} xs={0}>
+                <img src={hinhAnh} alt="logo" width={150} />
+            </Col>
+            </Row>
             <Form.Item wrapperCol={{ offset: 11, span: 13 }}>
                 <Button htmlType="submit">Add Show Time</Button>
             </Form.Item>
+
         </Form>
+
+
         </>
     )
 }
