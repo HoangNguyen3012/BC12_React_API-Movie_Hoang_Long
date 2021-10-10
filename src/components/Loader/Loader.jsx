@@ -5,7 +5,7 @@ import {
 
 export default function Loader() {
     return (
-        <div>
+        <div style={{paddingTop: '10vh'}}>
             <h1>Please Wait</h1> <br />
             <LoadingOutlined style={{ fontSize: '36px', color: '#17A2B8', padding: '0 10px' }}/>
             <LoadingOutlined style={{ fontSize: '36px', color: '#17A2B8', padding: '0 10px' }}/>
